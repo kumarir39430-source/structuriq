@@ -1,0 +1,15 @@
+Project Phoenix - weekly sync
+Attendees: Riya, Karan, Divya
+Date: November 14, 2026
+
+Agenda discussed: login bug, dashboard speed, release plan.
+
+- Karan will fix the login bug by 2026-11-18
+- Divya needs to benchmark the dashboard, target 40% faster
+- TODO: update the release notes
+- Next meeting on Friday
+
+Name | Role | Status
+Riya | Backend | Done
+Karan | Frontend | In progress
+Divya | QA | Blocked

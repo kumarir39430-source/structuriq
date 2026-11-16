@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StructurIQ – messy text in, structured data out</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>StructurIQ</h1>
+    <p class="tag">Paste anything messy. Get clean, structured data back.</p>
+  </div>
+  <span id="engine" class="pill" title="Extraction engine">checking…</span>
+</header>
+
+<main class="grid">
+  <section class="panel" aria-labelledby="in-h">
+    <h2 id="in-h">Source text</h2>
+    <div class="bar">
+      <label class="sr" for="sample">Load a sample</label>
+      <select id="sample">
+        <option value="">Load a sample…</option>
+        <option value="sample_invoice.txt">Invoice</option>
+        <option value="sample_email.txt">Email</option>
+        <option value="sample_notes.txt">Meeting notes</option>
+        <option value="sample_messy.txt">Messy chat note</option>
+      </select>
+      <label class="btn ghost" for="file">Upload file</label>
+      <input id="file" type="file" accept=".txt,.md,.csv,.json,.log,.pdf,.docx" hidden>
+      <span id="fname" class="muted"></span>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-view="edit" role="tab">Edit</button>
+      <button class="tab" data-view="marked" role="tab">Highlighted</button>
+    </div>
+    <textarea id="text" spellcheck="false" placeholder="Paste an email, invoice, notes, a chat message, a log… anything unstructured."></textarea>
+    <div id="marked" class="marked" hidden></div>
+    <div id="legend" class="legend"></div>
+
+    <div class="opts">
+      <label>Fields to pull out <span class="muted">(optional, comma-separated)</span>
+        <input id="fields" type="text" placeholder="invoice number, total, due date, email">
+      </label>
+      <label>Engine
+        <select id="mode">
+          <option value="auto">Auto</option>
+          <option value="rules">Offline rules only</option>
+          <option value="llm">Claude (needs API key)</option>
+        </select>
+      </label>
+    </div>
+    <div class="row">
+      <button id="go" class="btn">Extract structure</button>
+      <span id="status" class="muted" role="status"></span>
+    </div>
+
+    <h2>History</h2>
+    <ul id="history" class="history"><li class="muted">No extractions yet.</li></ul>
+  </section>
+
+  <section class="panel" aria-labelledby="out-h">
+    <h2 id="out-h">Structured output</h2>
+    <div class="bar">
+      <button class="btn ghost" data-export="json">Download JSON</button>
+      <button class="btn ghost" data-export="csv">Download CSV</button>
+      <button class="btn ghost" data-export="md">Download Markdown</button>
+      <button class="btn ghost" id="copy">Copy JSON</button>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab on" data-out="overview" role="tab">Overview</button>
+      <button class="tab" data-out="entities" role="tab">Entities</button>
+      <button class="tab" data-out="tables" role="tab">Tables</button>
+      <button class="tab" data-out="json" role="tab">JSON</button>
+    </div>
+    <div id="out" class="out"><p class="muted">Results appear here. Try a sample from the list, then choose Extract structure.</p></div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>
